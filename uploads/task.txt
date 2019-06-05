@@ -1,0 +1,3 @@
+fse, await and rest api
+calling 3 rd party REST apis from express server using request,request-promise libraries
+explore routes.js and using in app.js allow CORS

@@ -1,0 +1,12 @@
+npm init---> new project for node js
+node app.js --> start project
+
+
+npm i
+=========
+express --> express js framework
+multer --> file upload
+hbs --> handlebar template
+jade --> template
+cookie-parser -- set and use cookie
+express-session -- set and use session

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>File Management App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="../filerequest.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h3 class="display-4">
+                <i class="fa fa-folder" aria-hidden="true"></i> File Management Application
+            </h3>
+            <p class="lead">Upload, download and delete files</p>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <form class="form-inline" method="POST" action="/api/upload" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="file" class="form-control-file form-control-sm" id="file" name="file" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Upload</button>
+                </form>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-sm table-striped table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Date modified</th>
+                            <th scope="col">Size (in KB)</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if filesExist}}
+                        {{#each files}}
+                        <tr>
+                            <th scope="row"><i class="fa fa-file"></i>&nbsp;{{this.name}} </th>
+                            <td>{{this.modifiedDate}}</td>
+                            <td>{{this.size}}</td>
+                            <td>
+                                <a style="cursor:pointer" title="Download" onclick="return DownloadFile('{{this.name}}');"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+                                &nbsp;<a style="cursor:pointer" title="Delete" onclick="return DeleteFile('{{this.name}}');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                        {{else}}
+                        <tr>
+                            <td scope="row" colspan="4">No files found!!</td>
+                        </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
